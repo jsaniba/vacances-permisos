@@ -121,12 +121,12 @@
     <!-- El missatge per a iOS/MAc s'inserta aquí (dinàmicament) -->
     <div id="apple-banner-placeholder"></div>
 
-    <form id="formulari" onsubmit="enviarFormulario(); return false;">
+    <form id="formulari" autocomplete="off" onsubmit="enviarFormulario(); return false;">
       <label for="nom">NOM I COGNOMS</label>
-      <input type="text" id="nom" name="nom" required>
+      <input type="text" id="nom" name="nom" autocomplete="off" required>
 
       <label for="nip">NIP</label>
-      <input type="text" id="nip" name="nip" required>
+      <input type="text" id="nip" name="nip" autocomplete="off" required>
 
       <label for="lloc">LLOC DE TREBALL</label>
       <select id="lloc" name="lloc" required>
@@ -372,7 +372,6 @@
 
 </body>
 </html>
-
 
 
 
