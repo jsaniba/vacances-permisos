@@ -62,12 +62,6 @@
       margin-top: 8px;
     }
 
-    .row {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
     button {
       width: 48%;
       padding: 12px;
@@ -133,9 +127,6 @@
       opacity: 0.9;
     }
 
-    /* ==========================
-       RESPONSIVE - SOLO MÓVIL
-       ========================== */
     @media (max-width: 600px) {
       .header {
         flex-direction: column;
@@ -290,17 +281,23 @@
   </div>
 
   <script>
-    function enviarFormulario() {
-      const dataInici = document.getElementById('data_inici').value;
-      const dataFi = document.getElementById('data_fi').value;
+    function formatearFechaDMY(fechaISO) {
+      if (!fechaISO) return "";
+      const [anyo, mes, dia] = fechaISO.split("-");
+      return `${dia}/${mes}/${anyo}`;
+    }
 
-      if (!dataInici || !dataFi) {
+    function enviarFormulario() {
+      const dataIniciISO = document.getElementById('data_inici').value;
+      const dataFiISO = document.getElementById('data_fi').value;
+
+      if (!dataIniciISO || !dataFiISO) {
         alert("⚠️ Cal introduir totes les dates correctament abans d'enviar.");
         return;
       }
 
-      const inici = new Date(dataInici);
-      const fi = new Date(dataFi);
+      const inici = new Date(dataIniciISO);
+      const fi = new Date(dataFiISO);
 
       if (isNaN(inici.getTime()) || isNaN(fi.getTime())) {
         alert("⚠️ Una de les dates no és vàlida.");
@@ -312,9 +309,10 @@
         return;
       }
 
-      // Al menos un checkbox TORNS o HORES
-      const tornsOhores = Array.from(document.querySelectorAll('input[name="tipus"][value="TORNS"], input[name="tipus"][value="HORES"]'))
-        .some(cb => cb.checked);
+      const tornsOhores = Array.from(
+        document.querySelectorAll('input[name="tipus"][value="TORNS"], input[name="tipus"][value="HORES"]')
+      ).some(cb => cb.checked);
+
       if (!tornsOhores) {
         alert("⚠️ Marca almenys TORNS o HORES.");
         return;
@@ -329,6 +327,9 @@
       const especifiqueu = document.getElementById('especifiqueu').value;
       const total = document.getElementById('total').value;
       const observacions = document.getElementById('observacions').value;
+
+      const dataInici = formatearFechaDMY(dataIniciISO);
+      const dataFi = formatearFechaDMY(dataFiISO);
 
       let body =
         "NOM : " + nom + "\n" +
@@ -348,38 +349,23 @@
       const mesos = ["Gener","Febrer","Març","Abril","Maig","Juny","Juliol","Agost","Setembre","Octubre","Novembre","Desembre"];
       subject += "--" + mesos[inici.getMonth()] + " " + inici.getFullYear();
 
-      const mailtoLink = "mailto:vacances_aps_cppb.justicia@gencat.cat?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      const mailtoLink =
+        "mailto:vacances_aps_cppb.justicia@gencat.cat" +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
 
       const ua = navigator.userAgent || navigator.vendor || window.opera;
 
-      if (/iPhone|iPad/i.test(ua)) {
-        const bannerPlaceholder = document.getElementById('apple-banner-placeholder');
-        bannerPlaceholder.innerHTML = `
-          <div class="apple-message" id="apple-message">
-            <strong>Per enviar des del teu iPhone/iPad</strong>
-            <p>Prem el botó següent per obrir la teva aplicació de correu i enviar el formulari.</p>
-            <a class="apple-button" id="apple-mail-link" href="${mailtoLink}">📧 Obrir correu</a>
-            <div style="margin-top:10px;">
-              <button type="button" onclick="hideAppleBanner()" style="background:#6c757d;padding:8px 12px;border-radius:6px;border:none;color:#fff;cursor:pointer;">Tancar avis</button>
-            </div>
-          </div>
-        `;
-        document.getElementById('submitBtn').disabled = true;
-        return;
-      }
-
-      if (/Macintosh/i.test(ua)) {
-        const bannerPlaceholder = document.getElementById('apple-banner-placeholder');
-        bannerPlaceholder.innerHTML = `
-          <div class="apple-message" id="apple-message">
+      if (/iPhone|iPad/i.test(ua) || /Macintosh/i.test(ua)) {
+        document.getElementById('apple-banner-placeholder').innerHTML = `
+          <div class="apple-message">
             <strong>Obre el teu correu</strong>
             <p>Fes clic al botó següent per enviar el formulari:</p>
-            <a class="apple-button" id="apple-mail-link-mac" href="${mailtoLink}">📧 Obrir correu</a>
+            <a class="apple-button" href="${mailtoLink}">📧 Obrir correu</a>
             <div style="margin-top:10px;">
-              <button type="button" onclick="hideAppleBanner()" style="background:#6c757d;padding:8px 12px;border-radius:6px;border:none;color:#fff;cursor:pointer;">Tancar avis</button>
+              <button type="button" onclick="hideAppleBanner()" style="background:#6c757d;padding:8px 12px;border-radius:6px;border:none;color:#fff;">Tancar avis</button>
             </div>
-          </div>
-        `;
+          </div>`;
         document.getElementById('submitBtn').disabled = true;
         return;
       }
@@ -388,17 +374,13 @@
     }
 
     function hideAppleBanner() {
-      const placeholder = document.getElementById('apple-banner-placeholder');
-      placeholder.innerHTML = '';
-      const btn = document.getElementById('submitBtn');
-      if (btn) btn.disabled = false;
+      document.getElementById('apple-banner-placeholder').innerHTML = '';
+      document.getElementById('submitBtn').disabled = false;
     }
 
     function limpiarFormulario() {
       document.getElementById('formulari').reset();
       hideAppleBanner();
-      const btn = document.getElementById('submitBtn');
-      if (btn) btn.disabled = false;
     }
   </script>
 </body>
