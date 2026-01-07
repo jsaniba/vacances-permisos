@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Formulari de Petició</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,6 +12,7 @@
       margin: 0;
       padding: 0;
     }
+
     .container {
       width: 600px;
       max-width: 96%;
@@ -20,28 +22,33 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.12);
       padding: 20px;
     }
+
     .header {
       display: flex;
       align-items: center;
       margin-bottom: 20px;
     }
+
     .header img {
       width: 286px;
       height: 124px;
       object-fit: contain;
       margin-right: 20px;
     }
+
     .header h2 {
       margin: 0;
       color: #333;
       font-size: 24px;
     }
+
     label {
       display: block;
       margin-top: 10px;
       color: #444;
       font-weight: bold;
     }
+
     input[type="text"], select, textarea, input[type="date"] {
       width: 100%;
       padding: 8px;
@@ -50,14 +57,17 @@
       border-radius: 6px;
       box-sizing: border-box;
     }
+
     .checkbox-group {
       margin-top: 8px;
     }
+
     .row {
-      display:flex;
-      gap:8px;
-      align-items:center;
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
+
     button {
       width: 48%;
       padding: 12px;
@@ -69,12 +79,20 @@
       font-size: 16px;
       cursor: pointer;
     }
-    button:hover { background: #0056b3; }
+
+    button:hover {
+      background: #0056b3;
+    }
+
     button.reset {
       background: #6c757d;
       margin-left: 4%;
     }
-    button.reset:hover { background: #5a6268; }
+
+    button.reset:hover {
+      background: #5a6268;
+    }
+
     .apple-message {
       text-align: center;
       padding: 16px;
@@ -83,6 +101,7 @@
       margin-bottom: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
+
     .apple-button {
       display: inline-block;
       padding: 12px 18px;
@@ -93,8 +112,18 @@
       text-decoration: none;
       margin-top: 10px;
     }
-    .apple-button:hover { background: #0056b3; }
-    hr.small { border: none; height: 1px; background: #eee; margin: 12px 0; }
+
+    .apple-button:hover {
+      background: #0056b3;
+    }
+
+    hr.small {
+      border: none;
+      height: 1px;
+      background: #eee;
+      margin: 12px 0;
+    }
+
     .marca {
       text-align: right;
       font-size: 12px;
@@ -103,8 +132,31 @@
       margin-top: 16px;
       opacity: 0.9;
     }
+
+    /* ==========================
+       RESPONSIVE - SOLO MÓVIL
+       ========================== */
+    @media (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .header img {
+        margin-right: 0;
+        margin-bottom: 12px;
+        width: 220px;
+        height: auto;
+      }
+
+      .header h2 {
+        font-size: 20px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="container" id="form-container">
     <div class="header">
@@ -115,11 +167,11 @@
     <div id="apple-banner-placeholder"></div>
 
     <form id="formulari" autocomplete="off" onsubmit="enviarFormulario(); return false;">
-      <label for="nom">NOM </label>
-      <input type="text" id="nom" name="nom" autocomplete="off" required>
+      <label for="nom">NOM</label>
+      <input type="text" id="nom" name="nom" required>
 
       <label for="nip">NIP</label>
-      <input type="text" id="nip" name="nip" autocomplete="off" required>
+      <input type="text" id="nip" name="nip" required>
 
       <label for="lloc">LLOC DE TREBALL</label>
       <select id="lloc" name="lloc" required>
@@ -147,7 +199,7 @@
         <option>GSI</option>
         <option>Monitor/a formació ocupacional</option>
         <option>RIET</option>
-        <option>Secretari/a Tècnic Jurdic</option>
+        <option>Secretari/a Tècnic Jurídic</option>
         <option>Subdirector/a de Tractament</option>
         <option>Subdirector/a d'Interior</option>
         <option>Tècnic de Prevenció i Salut Laboral</option>
