@@ -1,387 +1,278 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-  <meta charset="UTF-8">
-  <title>Formulari de Petició</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<title>Formulari de Petició</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  margin:0;
+  padding:0;
+}
 
-    .container {
-      width: 600px;
-      max-width: 96%;
-      margin: 24px auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      padding: 20px;
-    }
+.container {
+  width:600px;
+  max-width:96%;
+  margin:24px auto;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.12);
+  padding:20px;
+}
 
-    .header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+.header {
+  display:flex;
+  align-items:center;
+  margin-bottom:20px;
+}
 
-    .header img {
-      width: 286px;
-      height: 124px;
-      object-fit: contain;
-      margin-right: 20px;
-    }
+.header img {
+  width:286px;
+  height:124px;
+  object-fit:contain;
+  margin-right:20px;
+}
 
-    .header h2 {
-      margin: 0;
-      color: #333;
-      font-size: 24px;
-    }
+.header h2 {
+  margin:0;
+  color:#333;
+  font-size:24px;
+}
 
-    label {
-      display: block;
-      margin-top: 10px;
-      color: #444;
-      font-weight: bold;
-    }
+label {
+  display:block;
+  margin-top:10px;
+  font-weight:bold;
+  color:#444;
+}
 
-    input[type="text"], select, textarea, input[type="date"] {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      box-sizing: border-box;
-    }
+input[type="text"], input[type="date"], select, textarea {
+  width:100%;
+  padding:8px;
+  margin-top:5px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  box-sizing:border-box;
+}
 
-    .checkbox-group {
-      margin-top: 8px;
-    }
+.checkbox-group label {
+  display:flex;
+  align-items:center;
+  margin-top:5px;
+  font-weight:normal;
+  color:#444;
+}
 
-    button {
-      width: 48%;
-      padding: 12px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 8px;
-      background: #007BFF;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
+.checkbox-group input[type="checkbox"],
+.checkbox-group input[type="radio"] {
+  margin-right:8px;
+}
 
-    button:hover {
-      background: #0056b3;
-    }
+button {
+  width:48%;
+  padding:12px;
+  margin-top:20px;
+  border:none;
+  border-radius:8px;
+  background:#007BFF;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
 
-    button.reset {
-      background: #6c757d;
-      margin-left: 4%;
-    }
+button.reset {
+  background:#6c757d;
+}
 
-    button.reset:hover {
-      background: #5a6268;
-    }
+hr.small {
+  margin:14px 0;
+  border:none;
+  height:1px;
+  background:#eee;
+}
 
-    .apple-message {
-      text-align: center;
-      padding: 16px;
-      border-radius: 10px;
-      background: #eef6ff;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
+.marca {
+  text-align:right;
+  font-size:12px;
+  color:maroon;
+  font-style:italic;
+  margin-top:16px;
+}
 
-    .apple-button {
-      display: inline-block;
-      padding: 12px 18px;
-      background: #007BFF;
-      color: #fff;
-      font-size: 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 10px;
-    }
-
-    .apple-button:hover {
-      background: #0056b3;
-    }
-
-    hr.small {
-      border: none;
-      height: 1px;
-      background: #eee;
-      margin: 12px 0;
-    }
-
-    .marca {
-      text-align: right;
-      font-size: 12px;
-      color: maroon;
-      font-style: italic;
-      margin-top: 16px;
-      opacity: 0.9;
-    }
-
-    @media (max-width: 600px) {
-      .header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .header img {
-        margin-right: 0;
-        margin-bottom: 12px;
-        width: 220px;
-        height: auto;
-      }
-
-      .header h2 {
-        font-size: 20px;
-      }
-    }
-  </style>
+@media (max-width:600px){
+  .header {
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  .header img {
+    margin-right:0;
+    margin-bottom:12px;
+    width:220px;
+    height:auto;
+  }
+  .header h2 { font-size:20px; }
+}
+</style>
 </head>
 
 <body>
-  <div class="container" id="form-container">
-    <div class="header">
-      <img src="logo.png" alt="Logo">
-      <h2>FORMULARI DE PETICIÓ</h2>
+<div class="container">
+  <div class="header">
+    <img src="logo.png" alt="Logo">
+    <h2>FORMULARI DE PETICIÓ</h2>
+  </div>
+
+  <form id="formulari" onsubmit="enviarFormulario();return false;" autocomplete="off">
+
+    <label for="nom">NOM</label>
+    <input id="nom" type="text" required>
+
+    <label for="nip">NIP</label>
+    <input id="nip" type="text" required>
+
+    <label for="lloc">LLOC DE TREBALL</label>
+    <select id="lloc" required>
+      <option value="">-- Selecciona --</option>
+      <option>Auxiliar Administratiu/iva</option>
+      <option>Bibliotecari/ària</option>
+      <option>Cap de Programes d'Atenció Especialitzada</option>
+      <option>Cap de Programes d'Educació Social</option>
+      <option>Cap de Serveis</option>
+      <option>Cap d'Unitat</option>
+      <option>Conductor/a</option>
+      <option>Coordinador d'Equips Multidisciplinaris</option>
+      <option>CUE</option>
+      <option>CUSI</option>
+      <option>CUSV</option>
+      <option>Director/a</option>
+      <option>Educador/a</option>
+      <option>CAF</option>
+      <option>Encarregat/a d'Àrea Administrativa</option>
+      <option>Enginyer</option>
+      <option>GAMP</option>
+      <option>GAMV</option>
+      <option>Gerent</option>
+      <option>GO</option>
+      <option>GSI</option>
+      <option>Monitor/a formació ocupacional</option>
+      <option>RIET</option>
+      <option>Secretari/a Tècnic Jurídic</option>
+      <option>Subdirector/a de Tractament</option>
+      <option>Subdirector/a d'Interior</option>
+      <option>Tècnic de Prevenció i Salut Laboral</option>
+      <option>Titulat/ada Superior Criminòleg</option>
+      <option>Titulat/ada Superior Pedagog/a</option>
+      <option>Titulat/ada Superior Psicòleg/a</option>
+      <option>TMI</option>
+    </select>
+
+    <label for="guardia">GUÀRDIA</label>
+    <select id="guardia" required>
+      <option value="">-- Selecciona --</option>
+      <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option>
+      <option>G</option><option>H</option><option>Equip de Tractament</option><option>MATÍ</option><option>TARDA</option><option>C/S</option>
+      <option>Cap Serveis</option><option>Gestió Econòmica</option><option>Gestió Penitenciària</option><option>OGI</option>
+      <option>Recursos Humans</option><option>SERVEIS EXT. C/S</option><option>SERVEIS EXT. MATÍ</option><option>SERVEIS EXT. TARDA</option>
+      <option>SERVEIS INT. C/S</option><option>SERVEIS INT. MATÍ</option><option>SERVEIS INT. TARDA</option>
+      <option>Suport Administratiu Equips Directius</option><option>TALLERS MATÍ</option><option>TALLERS TARDA</option>
+      <option>USI MATÍ</option><option>USI TARDA</option>
+    </select>
+
+    <hr class="small">
+
+    <div class="checkbox-group">
+      <label>PLANIFICAT AMB EL QUADRANT DE LA GUÀRDIA</label>
+      <label><input type="radio" name="planificat" value="SI">SI</label>
+      <label><input type="radio" name="planificat" value="NO">NO</label>
     </div>
 
-    <div id="apple-banner-placeholder"></div>
-
-    <form id="formulari" autocomplete="off" onsubmit="enviarFormulario(); return false;">
-      <label for="nom">NOM</label>
-      <input type="text" id="nom" name="nom" required>
-
-      <label for="nip">NIP</label>
-      <input type="text" id="nip" name="nip" required>
-
-      <label for="lloc">LLOC DE TREBALL</label>
-      <select id="lloc" name="lloc" required>
-        <option value="">-- Selecciona --</option>
-        <option>Auxiliar Administratiu/iva</option>
-        <option>Bibliotecari/ària</option>
-        <option>Cap de Programes d'Atenció Especialitzada</option>
-        <option>Cap de Programes d'Educació Social</option>
-        <option>Cap de Serveis</option>
-        <option>Cap d'Unitat</option>
-        <option>Conductor/a</option>
-        <option>Coordinador d'Equips Multidisciplinaris</option>
-        <option>CUE</option>
-        <option>CUSI</option>
-        <option>CUSV</option>
-        <option>Director/a</option>
-        <option>Educador/a</option>
-        <option>CAF</option>
-        <option>Encarregat/a d'Àrea Administrativa</option>
-        <option>Enginyer</option>
-        <option>GAMP</option>
-        <option>GAMV</option>
-        <option>Gerent</option>
-        <option>GO</option>
-        <option>GSI</option>
-        <option>Monitor/a formació ocupacional</option>
-        <option>RIET</option>
-        <option>Secretari/a Tècnic Jurídic</option>
-        <option>Subdirector/a de Tractament</option>
-        <option>Subdirector/a d'Interior</option>
-        <option>Tècnic de Prevenció i Salut Laboral</option>
-        <option>Titulat/ada Superior Criminòleg</option>
-        <option>Titulat/ada Superior Pedagog/a</option>
-        <option>Titulat/ada Superior Psicòleg/a</option>
-        <option>TMI</option>
-      </select>
-
-      <label for="guardia">GUÀRDIA</label>
-      <select id="guardia" name="guardia" required>
-        <option value="">-- Selecciona --</option>
-        <option>A</option>
-        <option>B</option>
-        <option>C</option>
-        <option>D</option>
-        <option>E</option>
-        <option>F</option>
-        <option>G</option>
-        <option>H</option>
-        <option>Equip de Tractament</option>
-        <option>MATÍ</option>
-        <option>TARDA</option>
-        <option>C/S</option>
-        <option>Cap Serveis</option>
-        <option>Gestió Econòmica</option>
-        <option>Gestió Penitenciària</option>
-        <option>OGI</option>
-        <option>Recursos Humans</option>
-        <option>SERVEIS EXT. C/S</option>
-        <option>SERVEIS EXT. MATÍ</option>
-        <option>SERVEIS EXT. TARDA</option>
-        <option>SERVEIS INT. C/S</option>
-        <option>SERVEIS INT. MATÍ</option>
-        <option>SERVEIS INT. TARDA</option>
-        <option>Suport Administratiu Equips Directius</option>
-        <option>TALLERS MATÍ</option>
-        <option>TALLERS TARDA</option>
-        <option>USI MATÍ</option>
-        <option>USI TARDA</option>
-      </select>
-
-      <hr class="small">
-
-      <label>PLANIFICAT AMB EL QUADRANT DE LA GUÀRDIA</label>
-      <div class="checkbox-group">
-        <label><input type="radio" name="planificat" value="SI"> SI</label>
-        <label style="margin-left:8px;"><input type="radio" name="planificat" value="NO"> NO</label>
-      </div>
-
+    <div class="checkbox-group">
       <label>TIPUS DE PETICIÓ</label>
-      <div class="checkbox-group">
         <label><input type="checkbox" name="tipus" value="VACANCES"> VACANCES</label><br>
         <label><input type="checkbox" name="tipus" value="ASSUMPTES PERSONALS"> ASSUMPTES PERSONALS</label><br>
         <label><input type="checkbox" name="tipus" value="COMPENSACIÓ DE FESTIUS"> COMPENSACIÓ DE FESTIUS</label><br>
         <label><input type="checkbox" name="tipus" value="HORES DE FORMACIÓ"> HORES DE FORMACIÓ</label><br>
         <label><input type="checkbox" name="tipus" value="HORES EXTRAORDINÀRIES"> HORES EXTRAORDINÀRIES</label><br>
         <label><input type="checkbox" name="tipus" value="ALTRES"> ALTRES</label>
-      </div>
+    </div>
 
-      <label for="especifiqueu">ESPECIFIQUEU</label>
-      <input type="text" id="especifiqueu" name="especifiqueu">
+    <label for="especifiqueu">ESPECIFIQUEU(Altres)Exemple AP Recuperables, Hores per judici, etc...</label>
+    <input id="especifiqueu" type="text">
 
-      <label for="data_inici">DATA INICI</label>
-      <input type="date" id="data_inici" name="data_inici" required>
+    <label for="data_inici">DATA INICI</label>
+    <input id="data_inici" type="date" required>
 
-      <label for="data_fi">DATA FI</label>
-      <input type="date" id="data_fi" name="data_fi" required>
+    <label for="data_fi">DATA FI</label>
+    <input id="data_fi" type="date" required>
 
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="tipus" value="TORNS"> TORNS</label><br>
-        <label><input type="checkbox" name="tipus" value="HORES"> HORES</label><br>
-      </div>
+    <hr class="small">
 
-      <label for="total">TOTAL TORNS/HORES</label>
-      <input type="text" id="total" name="total">
+    <div class="checkbox-group">
+      <label><input type="checkbox" id="chk_torns">TORNS</label>
+      <input id="total_torns" type="text" placeholder="TOTAL TORNS">
+    </div>
 
-      <label for="observacions">OBSERVACIONS</label>
-      <textarea id="observacions" name="observacions" rows="4"></textarea>
+    <div class="checkbox-group">
+      <label><input type="checkbox" id="chk_hores">HORES</label>
+      <input id="total_hores" type="text" placeholder="TOTAL HORES">
+    </div>
 
-      <div style="display:flex; justify-content: space-between;">
-        <button id="submitBtn" type="submit">Crear Correu</button>
-        <button type="button" class="reset" onclick="limpiarFormulario()">Netejar Formulari</button>
-      </div>
+    <label for="observacions">OBSERVACIONS</label>
+    <textarea id="observacions" rows="4"></textarea>
 
-      <div class="marca">created by JSI Workstation</div>
-    </form>
-  </div>
+    <div style="display:flex; justify-content:space-between;">
+      <button type="submit">Crear Correu</button>
+      <button type="reset" class="reset">Netejar</button>
+    </div>
 
-  <script>
-    function formatearFechaDMY(fechaISO) {
-      if (!fechaISO) return "";
-      const [anyo, mes, dia] = fechaISO.split("-");
-      return `${dia}/${mes}/${anyo}`;
-    }
+    <div class="marca">created by JSI Workstation</div>
 
-    function enviarFormulario() {
-      const dataIniciISO = document.getElementById('data_inici').value;
-      const dataFiISO = document.getElementById('data_fi').value;
+  </form>
+</div>
 
-      if (!dataIniciISO || !dataFiISO) {
-        alert("⚠️ Cal introduir totes les dates correctament abans d'enviar.");
-        return;
-      }
+<script>
+function dmy(f){ const [y,m,d]=f.split("-"); return `${d}/${m}/${y}`; }
 
-      const inici = new Date(dataIniciISO);
-      const fi = new Date(dataFiISO);
+function mesAnyLletres(data){
+  const mesos = ["gener","febrer","març","abril","maig","juny","juliol","agost","setembre","octubre","novembre","desembre"];
+  const [y,m] = data.split("-");
+  return `${mesos[parseInt(m)-1]} ${y}`;
+}
 
-      if (isNaN(inici.getTime()) || isNaN(fi.getTime())) {
-        alert("⚠️ Una de les dates no és vàlida.");
-        return;
-      }
+function enviarFormulario(){
+  const planificat = document.querySelector('input[name=planificat]:checked')?.value || "";
+  const tipus = Array.from(document.querySelectorAll('input[name="tipus"]:checked')).map(cb=>cb.value).join(", ");
 
-      if (fi < inici) {
-        alert("⚠️ La data final no pot ser anterior a la data inicial.");
-        return;
-      }
+  let body = `NOM : ${nom.value}
+NIP: ${nip.value}
+LLOC DE TREBALL: ${lloc.value}
+GUÀRDIA: ${guardia.value}
 
-      const tornsOhores = Array.from(
-        document.querySelectorAll('input[name="tipus"][value="TORNS"], input[name="tipus"][value="HORES"]')
-      ).some(cb => cb.checked);
+----------------------------------------
 
-      if (!tornsOhores) {
-        alert("⚠️ Marca almenys TORNS o HORES.");
-        return;
-      }
+PLANIFICAT AMB EL QUADRANT DE LA GUÀRDIA: ${planificat}
+TIPUS DE PETICIÓ: ${tipus}
+ESPECIFIQUEU: ${especifiqueu.value}
+DATA INICI: ${dmy(data_inici.value)}
+DATA FI: ${dmy(data_fi.value)}`;
 
-      const nom = document.getElementById('nom').value;
-      const nip = document.getElementById('nip').value;
-      const lloc = document.getElementById('lloc').value;
-      const guardia = document.getElementById('guardia').value;
-      const planificat = document.querySelector('input[name="planificat"]:checked')?.value || '';
-      const tipus = Array.from(document.querySelectorAll('input[name="tipus"]:checked')).map(cb => cb.value).join(", ");
-      const especifiqueu = document.getElementById('especifiqueu').value;
-      const total = document.getElementById('total').value;
-      const observacions = document.getElementById('observacions').value;
+  if(chk_torns.checked){
+    body += `\nTORNS:\nTOTAL TORNS: ${total_torns.value}`;
+  }
 
-      const dataInici = formatearFechaDMY(dataIniciISO);
-      const dataFi = formatearFechaDMY(dataFiISO);
+  if(chk_hores.checked){
+    body += `\nHORES:\nTOTAL HORES: ${total_hores.value}`;
+  }
 
-      let body =
-        "NOM : " + nom + "\n" +
-        "NIP: " + nip + "\n" +
-        "LLOC DE TREBALL: " + lloc + "\n" +
-        "GUÀRDIA: " + guardia + "\n\n" +
-        "----------------------------------------\n\n" +
-        "PLANIFICAT AMB EL QUADRANT DE LA GUÀRDIA: " + planificat + "\n" +
-        "TIPUS DE PETICIÓ: " + tipus + "\n" +
-        "ESPECIFIQUEU: " + especifiqueu + "\n" +
-        "DATA INICI: " + dataInici + "\n" +
-        "DATA FI: " + dataFi + "\n" +
-        "TOTAL TORNS/HORES: " + total + "\n" +
-        "OBSERVACIONS: " + observacions;
+  body += `\nOBSERVACIONS: ${observacions.value}`;
 
-      let subject = nip + "--" + lloc + "--" + guardia;
-      const mesos = ["Gener","Febrer","Març","Abril","Maig","Juny","Juliol","Agost","Setembre","Octubre","Novembre","Desembre"];
-      subject += "--" + mesos[inici.getMonth()] + " " + inici.getFullYear();
-
-      const mailtoLink =
-        "mailto:vacances_aps_cppb.justicia@gencat.cat" +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
-
-      const ua = navigator.userAgent || navigator.vendor || window.opera;
-
-      if (/iPhone|iPad/i.test(ua) || /Macintosh/i.test(ua)) {
-        document.getElementById('apple-banner-placeholder').innerHTML = `
-          <div class="apple-message">
-            <strong>Obre el teu correu</strong>
-            <p>Fes clic al botó següent per enviar el formulari:</p>
-            <a class="apple-button" href="${mailtoLink}">📧 Obrir correu</a>
-            <div style="margin-top:10px;">
-              <button type="button" onclick="hideAppleBanner()" style="background:#6c757d;padding:8px 12px;border-radius:6px;border:none;color:#fff;">Tancar avis</button>
-            </div>
-          </div>`;
-        document.getElementById('submitBtn').disabled = true;
-        return;
-      }
-
-      window.location.href = mailtoLink;
-    }
-
-    function hideAppleBanner() {
-      document.getElementById('apple-banner-placeholder').innerHTML = '';
-      document.getElementById('submitBtn').disabled = false;
-    }
-
-    function limpiarFormulario() {
-      document.getElementById('formulari').reset();
-      hideAppleBanner();
-    }
-  </script>
+  const subject = `${nip.value}--${lloc.value}--${guardia.value}--${mesAnyLletres(data_inici.value)}`;
+  location.href = `mailto:vacances_aps_cppb.justicia@gencat.cat?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+</script>
 </body>
 </html>
